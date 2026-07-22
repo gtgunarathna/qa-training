@@ -1,24 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Tracker
+
+A simple task tracking web app built with [Next.js](https://nextjs.org), TypeScript, and Tailwind CSS.
+
+This is a **demo project** — there is no backend or database. Tasks are stored entirely in the browser's `localStorage`, so they persist across page reloads but are tied to a single browser on a single machine.
+
+## Features
+
+- Add a task with a title, description, due date, and status
+- Edit an existing task
+- Mark a task as done
+- Delete a task
+- Filter tasks by status (All / Pending / In Progress / Done)
+- Tasks are sorted by due date (earliest first; tasks with no due date appear last)
+- Changes are saved automatically to `localStorage` as you make them
+
+## Prerequisites
+
+- [Node.js](https://nodejs.org/) 18.18 or later (Node 20+ recommended)
+- npm (comes bundled with Node.js)
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+3. Open [http://localhost:3000](http://localhost:3000) in your browser. The page auto-updates as you edit the code.
+
+## Other Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build   # Create an optimized production build
+npm run start   # Run the production build (requires `npm run build` first)
+npm run lint    # Run ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/                  # Next.js App Router pages and layout
+├── components/           # UI components (TaskForm, TaskItem, TaskList, TaskTracker)
+├── hooks/useTasks.ts      # Task state management, synced with localStorage
+├── lib/storage.ts         # localStorage read/write helpers
+└── types/task.ts          # Task and status type definitions
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes
+
+- Since there is no database, clearing your browser's site data (or using a different browser/device) will reset the task list.
+- This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load the [Geist](https://vercel.com/font) font family.
 
 ## Learn More
 
@@ -26,11 +65,3 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
