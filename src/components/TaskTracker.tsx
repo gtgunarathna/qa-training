@@ -9,6 +9,13 @@ import { STATUS_LABELS, TASK_STATUSES, type Task, type TaskStatus } from "@/type
 const FILTER_ALL = "all" as const;
 type Filter = TaskStatus | typeof FILTER_ALL;
 
+function getDueTimestamp(task: Task): number | null {
+  if (!task.dueDate) return null;
+  const dueTime = task.dueTime || "23:59";
+  const timestamp = new Date(`${task.dueDate}T${dueTime}:00`).getTime();
+  return Number.isNaN(timestamp) ? null : timestamp;
+}
+
 export function TaskTracker() {
   const { tasks, addTask, updateTask, markAsDone, deleteTask } = useTasks();
   const [editingTask, setEditingTask] = useState<Task | null>(null);
@@ -18,12 +25,14 @@ export function TaskTracker() {
     const filtered =
       filter === FILTER_ALL ? tasks : tasks.filter((task) => task.status === filter);
 
-    // Show the earliest due date first; tasks without a due date sort last.
+    // Show earliest due datetime first; tasks without a due date sort last.
     return [...filtered].sort((a, b) => {
-      if (!a.dueDate && !b.dueDate) return 0;
-      if (!a.dueDate) return 1;
-      if (!b.dueDate) return -1;
-      return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      const aDue = getDueTimestamp(a);
+      const bDue = getDueTimestamp(b);
+      if (aDue === null && bDue === null) return 0;
+      if (aDue === null) return 1;
+      if (bDue === null) return -1;
+      return aDue - bDue;
     });
   }, [tasks, filter]);
 
@@ -44,8 +53,8 @@ export function TaskTracker() {
   return (
     <div className="flex w-full max-w-2xl flex-col gap-6 py-10">
       <header>
-        <h1 className="text-2xl font-bold">Task Tracker</h1>
-        <p className="text-sm text-black/60 dark:text-white/60">
+        <h1 className="text-2xl font-bold text-[#000258]">Task Tracker</h1>
+        <p className="text-sm text-[#475569]">
           Tasks are saved in your browser&apos;s local storage.
         </p>
       </header>
@@ -64,8 +73,8 @@ export function TaskTracker() {
           onClick={() => setFilter(FILTER_ALL)}
           className={`rounded-full px-3 py-1 text-xs font-medium ${
             filter === FILTER_ALL
-              ? "bg-blue-600 text-white"
-              : "border border-black/15 hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+              ? "bg-[#000258] text-white"
+              : "border border-[#d8d8d8] hover:bg-white"
           }`}
         >
           All
@@ -77,8 +86,8 @@ export function TaskTracker() {
             onClick={() => setFilter(status)}
             className={`rounded-full px-3 py-1 text-xs font-medium ${
               filter === status
-                ? "bg-blue-600 text-white"
-                : "border border-black/15 hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+                ? "bg-[#000258] text-white"
+                : "border border-[#d8d8d8] hover:bg-white"
             }`}
           >
             {STATUS_LABELS[status]}

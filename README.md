@@ -6,12 +6,12 @@ This is a **demo project** — there is no backend or database. Tasks are stored
 
 ## Features
 
-- Add a task with a title, description, due date, and status
+- Add a task with a title, description, due date, due time, and status
 - Edit an existing task
 - Mark a task as done
 - Delete a task
 - Filter tasks by status (All / Pending / In Progress / Done)
-- Tasks are sorted by due date (earliest first; tasks with no due date appear last)
+- Tasks are sorted by due date/time (earliest first; tasks with no due date appear last)
 - Changes are saved automatically to `localStorage` as you make them
 
 ## Prerequisites

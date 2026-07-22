@@ -14,6 +14,7 @@ const EMPTY_FORM: TaskInput = {
   title: "",
   description: "",
   dueDate: "",
+  dueTime: "",
   status: "pending",
 };
 
@@ -23,6 +24,7 @@ function toFormValues(task?: Task | null): TaskInput {
         title: task.title,
         description: task.description,
         dueDate: task.dueDate,
+        dueTime: task.dueTime,
         status: task.status,
       }
     : EMPTY_FORM;
@@ -54,7 +56,7 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 rounded-lg border border-black/10 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-black/20"
+      className="flex flex-col gap-4 rounded-lg border border-[#d8d8d8] bg-white p-5 shadow-sm"
     >
       <h2 className="text-lg font-semibold">
         {initialTask ? "Edit Task" : "Add a New Task"}
@@ -70,7 +72,7 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           placeholder="e.g. Write project report"
-          className="rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-black/30"
+          className="rounded-md border border-[#d8d8d8] px-3 py-2 text-sm outline-none focus:border-[#000258]"
         />
       </div>
 
@@ -84,7 +86,7 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
           onChange={(e) => setForm({ ...form, description: e.target.value })}
           placeholder="Optional details about this task"
           rows={3}
-          className="resize-none rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-black/30"
+          className="resize-none rounded-md border border-[#d8d8d8] px-3 py-2 text-sm outline-none focus:border-[#000258]"
         />
       </div>
 
@@ -98,7 +100,20 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
             type="date"
             value={form.dueDate}
             onChange={(e) => setForm({ ...form, dueDate: e.target.value })}
-            className="rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-black/30"
+            className="rounded-md border border-[#d8d8d8] px-3 py-2 text-sm outline-none focus:border-[#000258]"
+          />
+        </div>
+
+        <div className="flex flex-1 flex-col gap-1">
+          <label htmlFor="dueTime" className="text-sm font-medium">
+            Due Time
+          </label>
+          <input
+            id="dueTime"
+            type="time"
+            value={form.dueTime}
+            onChange={(e) => setForm({ ...form, dueTime: e.target.value })}
+            className="rounded-md border border-[#d8d8d8] px-3 py-2 text-sm outline-none focus:border-[#000258]"
           />
         </div>
 
@@ -112,7 +127,7 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
             onChange={(e) =>
               setForm({ ...form, status: e.target.value as TaskInput["status"] })
             }
-            className="rounded-md border border-black/15 px-3 py-2 text-sm outline-none focus:border-blue-500 dark:border-white/15 dark:bg-black/30"
+            className="rounded-md border border-[#d8d8d8] px-3 py-2 text-sm outline-none focus:border-[#000258]"
           >
             {TASK_STATUSES.map((status) => (
               <option key={status} value={status}>
@@ -130,14 +145,14 @@ export function TaskForm({ initialTask, onSubmit, onCancel }: TaskFormProps) {
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-md border border-black/15 px-4 py-2 text-sm font-medium hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+            className="rounded-md border border-[#d8d8d8] px-4 py-2 text-sm font-medium hover:bg-[#f6f5f8]"
           >
             Cancel
           </button>
         )}
         <button
           type="submit"
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          className="rounded-md bg-[#000258] px-4 py-2 text-sm font-medium text-white hover:bg-[#020346]"
         >
           {initialTask ? "Save Changes" : "Add Task"}
         </button>

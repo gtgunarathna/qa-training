@@ -13,7 +13,12 @@ export function loadTasks(): Task[] {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? (parsed as Task[]) : [];
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.map((task) => ({
+      ...task,
+      dueTime: typeof task?.dueTime === "string" ? task.dueTime : "",
+    })) as Task[];
   } catch {
     // Corrupted or inaccessible storage - fail safe with an empty list.
     return [];

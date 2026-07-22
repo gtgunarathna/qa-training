@@ -10,9 +10,9 @@ interface TaskItemProps {
 }
 
 const STATUS_BADGE_CLASSES: Record<Task["status"], string> = {
-  pending: "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
-  "in-progress": "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
-  done: "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
+  pending: "bg-[#ebeefe] text-[#000258]",
+  "in-progress": "bg-[#dfe4ff] text-[#020346]",
+  done: "bg-[#ecfacf] text-[#2f4a00]",
 };
 
 function formatDueDate(dueDate: string): string {
@@ -26,11 +26,21 @@ function formatDueDate(dueDate: string): string {
   });
 }
 
+function formatDueTime(dueTime: string): string {
+  if (!dueTime) return "";
+  const date = new Date(`2000-01-01T${dueTime}`);
+  if (Number.isNaN(date.getTime())) return dueTime;
+  return date.toLocaleTimeString(undefined, {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 export function TaskItem({ task, onEdit, onDelete, onMarkAsDone }: TaskItemProps) {
   const isDone = task.status === "done";
 
   return (
-    <li className="flex flex-col gap-3 rounded-lg border border-black/10 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-black/20 sm:flex-row sm:items-start sm:justify-between">
+    <li className="flex flex-col gap-3 rounded-lg border border-[#d8d8d8] bg-white p-4 shadow-sm sm:flex-row sm:items-start sm:justify-between">
       <div className="flex flex-1 flex-col gap-1">
         <div className="flex flex-wrap items-center gap-2">
           <h3 className={`font-semibold ${isDone ? "line-through opacity-60" : ""}`}>
@@ -43,10 +53,11 @@ export function TaskItem({ task, onEdit, onDelete, onMarkAsDone }: TaskItemProps
           </span>
         </div>
         {task.description && (
-          <p className="text-sm text-black/70 dark:text-white/70">{task.description}</p>
+          <p className="text-sm text-[#475569]">{task.description}</p>
         )}
-        <p className="text-xs text-black/50 dark:text-white/50">
+        <p className="text-xs text-[#64748b]">
           Due: {formatDueDate(task.dueDate)}
+          {task.dueDate && task.dueTime ? ` at ${formatDueTime(task.dueTime)}` : ""}
         </p>
       </div>
 
@@ -55,7 +66,7 @@ export function TaskItem({ task, onEdit, onDelete, onMarkAsDone }: TaskItemProps
           <button
             type="button"
             onClick={() => onMarkAsDone(task.id)}
-            className="rounded-md border border-green-600 px-3 py-1.5 text-xs font-medium text-green-700 hover:bg-green-50 dark:text-green-400 dark:hover:bg-green-900/20"
+            className="rounded-md border border-[#78bc43] bg-[#ecfacf] px-3 py-1.5 text-xs font-medium text-[#2f4a00] hover:bg-[#e3f8bb]"
           >
             Mark as Done
           </button>
@@ -63,14 +74,14 @@ export function TaskItem({ task, onEdit, onDelete, onMarkAsDone }: TaskItemProps
         <button
           type="button"
           onClick={() => onEdit(task)}
-          className="rounded-md border border-black/15 px-3 py-1.5 text-xs font-medium hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+          className="rounded-md border border-[#d8d8d8] px-3 py-1.5 text-xs font-medium hover:bg-[#f6f5f8]"
         >
           Edit
         </button>
         <button
           type="button"
           onClick={() => onDelete(task.id)}
-          className="rounded-md border border-red-600 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
+          className="rounded-md border border-red-500 px-3 py-1.5 text-xs font-medium text-red-700 hover:bg-red-50"
         >
           Delete
         </button>

@@ -13,7 +13,7 @@ interface TaskListProps {
 export function TaskList({ tasks, onEdit, onDelete, onMarkAsDone }: TaskListProps) {
   if (tasks.length === 0) {
     return (
-      <p className="rounded-lg border border-dashed border-black/15 p-8 text-center text-sm text-black/50 dark:border-white/15 dark:text-white/50">
+      <p className="rounded-lg border border-dashed border-[#d8d8d8] bg-white/70 p-8 text-center text-sm text-[#64748b]">
         No tasks yet. Add one above to get started.
       </p>
     );
