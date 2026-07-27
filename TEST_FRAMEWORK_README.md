@@ -103,6 +103,55 @@ test('example', async ({ taskTrackerPage, taskFormPage, taskListPage }) => {
 
 ## Test Cases
 
+## AI Test Evaluation Checklist
+
+<table style="width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:10px; border:1px solid #d7e0ea;">
+  <thead>
+    <tr style="background:#1f567d; color:#ffffff; text-align:left;">
+      <th style="padding:12px 16px; font-size:14px;">DIMENSION</th>
+      <th style="padding:12px 16px; font-size:14px;">KEY QUESTION</th>
+      <th style="padding:12px 16px; font-size:14px;">RED FLAG</th>
+      <th style="padding:12px 16px; font-size:14px;">CURRENT STATUS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#eef4fa;">
+      <td style="padding:12px 16px; color:#1f74b6;"><strong>Coverage</strong></td>
+      <td style="padding:12px 16px; color:#1f567d;">Are all acceptance criteria tested?</td>
+      <td style="padding:12px 16px; color:#d92d20;">Happy path only</td>
+      <td style="padding:12px 16px; color:#1f567d;">Partial: TC-001 to TC-005 automated; negatives/boundaries/most edges pending.</td>
+    </tr>
+    <tr style="background:#eef4fa;">
+      <td style="padding:12px 16px; color:#1f74b6;"><strong>Correctness</strong></td>
+      <td style="padding:12px 16px; color:#1f567d;">Do assertions validate the RIGHT thing?</td>
+      <td style="padding:12px 16px; color:#d92d20;">Trivial checks</td>
+      <td style="padding:12px 16px; color:#1f567d;">Moderate risk: mostly count/existence checks, limited field-level verification.</td>
+    </tr>
+    <tr style="background:#eef4fa;">
+      <td style="padding:12px 16px; color:#1f74b6;"><strong>Completeness</strong></td>
+      <td style="padding:12px 16px; color:#1f567d;">Edge cases, boundaries, negatives?</td>
+      <td style="padding:12px 16px; color:#d92d20;">Missing error paths</td>
+      <td style="padding:12px 16px; color:#1f567d;">Documented well, but not automated yet for Story 1.</td>
+    </tr>
+    <tr style="background:#eef4fa;">
+      <td style="padding:12px 16px; color:#1f74b6;"><strong>Maintainability</strong></td>
+      <td style="padding:12px 16px; color:#1f567d;">POM, readable, no duplication?</td>
+      <td style="padding:12px 16px; color:#d92d20;">Hard-coded values</td>
+      <td style="padding:12px 16px; color:#1f567d;">Good POM/fixtures/factory baseline; some brittle list-parsing assumptions remain.</td>
+    </tr>
+    <tr style="background:#eef4fa;">
+      <td style="padding:12px 16px; color:#1f74b6;"><strong>Trustworthiness</strong></td>
+      <td style="padding:12px 16px; color:#1f567d;">Can this test actually fail?</td>
+      <td style="padding:12px 16px; color:#d92d20;">Always-pass logic</td>
+      <td style="padding:12px 16px; color:#1f567d;">Risk present: page readiness logic currently returns true on catch path.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="margin-top:12px; padding:10px 14px; border-radius:8px; background:#e8f7f5; color:#1f567d;">
+  Use the Evaluation Checklist handout for every AI-generated test.
+</div>
+
 ### Happy Path Tests (TC-001 to TC-005)
 
 All tests follow the **AAA Pattern**:

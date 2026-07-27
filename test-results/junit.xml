@@ -1,14 +1,14 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="8.756851999999999">
-<testsuite name="story-1-add-task.spec.ts" timestamp="2026-07-27T09:44:42.883Z" hostname="chromium" tests="5" failures="0" skipped="0" time="7.059" errors="0">
-<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-001: Add task with all valid details" classname="story-1-add-task.spec.ts" time="1.343">
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="3.708722">
+<testsuite name="story-1-add-task.spec.ts" timestamp="2026-07-27T10:03:20.366Z" hostname="chromium" tests="5" failures="0" skipped="0" time="9.453" errors="0">
+<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-001: Add task with all valid details" classname="story-1-add-task.spec.ts" time="1.81">
 </testcase>
-<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-002: Add task with minimum required details" classname="story-1-add-task.spec.ts" time="1.385">
+<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-002: Add task with minimum required details" classname="story-1-add-task.spec.ts" time="1.757">
 </testcase>
-<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-003: Add multiple tasks sequentially" classname="story-1-add-task.spec.ts" time="1.767">
+<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-003: Add multiple tasks sequentially" classname="story-1-add-task.spec.ts" time="2.23">
 </testcase>
-<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-004: Add task with future due date" classname="story-1-add-task.spec.ts" time="1.308">
+<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-004: Add task with future due date" classname="story-1-add-task.spec.ts" time="1.826">
 </testcase>
-<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-005: Add task with today due date" classname="story-1-add-task.spec.ts" time="1.256">
+<testcase name="Story 1: Add a New Task - Happy Path Scenarios › TC-005: Add task with today due date" classname="story-1-add-task.spec.ts" time="1.83">
 </testcase>
 </testsuite>
 </testsuites>
