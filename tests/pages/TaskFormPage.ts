@@ -8,8 +8,8 @@ import { BasePage } from './BasePage';
  */
 export class TaskFormPage extends BasePage {
   // Robust locators using accessible selectors (getByRole preferred)
-  readonly taskNameInput = this.page.getByPlaceholder('e.g. Write project report');
-  readonly taskDescriptionInput = this.page.getByPlaceholder('Optional details about this task');
+  readonly taskNameInput = this.page.getByLabel('Title');
+  readonly taskDescriptionInput = this.page.getByLabel('Description');
   readonly dueDateInput = this.page.getByLabel('Due Date');
   readonly dueTimeInput = this.page.getByLabel('Due Time');
   readonly statusSelect = this.page.getByLabel('Status');
