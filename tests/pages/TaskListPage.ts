@@ -97,6 +97,7 @@ export class TaskListPage extends BasePage {
     return {
       name: taskName,
       description: text ?? '',
+      startDate: '',
       dueDate: text ?? '',
       status: 'Pending',
     };
